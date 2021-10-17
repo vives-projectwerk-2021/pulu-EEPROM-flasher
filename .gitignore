@@ -9,4 +9,4 @@ BUILD/
 src/keys.h
 
 mbed-os/
-EEPROM_24AA64/
+pulu-EEPROM_24AA64/
