@@ -1,0 +1,12 @@
+.vscode/
+__pycache__/
+
+mbed_settings.py
+mbed_settings.pyc
+
+BUILD/
+
+src/keys.h
+
+mbed-os/
+EEPROM_24AA64/
