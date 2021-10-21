@@ -6,7 +6,7 @@ mbed_settings.pyc
 
 BUILD/
 
-src/keys.h
+src/settings.h
 
 mbed-os/
 pulu-EEPROM_24AA64/
