@@ -1,0 +1,25 @@
+{
+  "name": "pulu-config-flasher",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vives-projectwerk-2021/pulu-config-flasher.git"
+  },
+  "keywords": [],
+  "type": "module",
+  "author": "Dimi Catrysse",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vives-projectwerk-2021/pulu-config-flasher/issues"
+  },
+  "homepage": "https://github.com/vives-projectwerk-2021/pulu-config-flasher#readme",
+  "dependencies": {
+    "commander": "^8.3.0",
+    "serialport": "^9.2.5"
+  }
+}
