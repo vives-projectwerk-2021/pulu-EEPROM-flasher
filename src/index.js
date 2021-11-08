@@ -31,7 +31,7 @@ program.command('flash')
     .addArgument(
         new Argument('<wait-time>', 'time to wait between measurements')
         .argRequired()
-        .argParser(x=>{return x.match('^[0-9]{1,9}$')? x : null})
+        .argParser(x=>{return x.match('^[0-9]{1,9}$')? parseInt(x) : null})
     )
     .addOption(
         new Option('-p, --port <port>', 'serial port to connect')
