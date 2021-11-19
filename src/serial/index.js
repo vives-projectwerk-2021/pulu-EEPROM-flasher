@@ -56,7 +56,7 @@ export default {
             serialPort.write(base64.encode_text('id'))
             let timer = setTimeout(() => {
                 reject(new Error('pulu-device not responding'))
-            }, 500)
+            }, 5000)
         })
     }
 }
