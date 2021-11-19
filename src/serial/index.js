@@ -9,13 +9,21 @@ export default {
             SerialPort.list()
             .then( portsInfo => {
                 let ports = []
+                let defaultPortSet = false
                 if(portsInfo.length) {
                     for(const portInfo of portsInfo) {
+                        const isSTM = (portInfo.manufacturer == "STMicroelectronics")
+                        const isDefault = defaultPortSet?false:isSTM
+                        if(isDefault) defaultPortSet = true
                         ports.push({
                             path: portInfo.path,
                             manufacturer: portInfo.manufacturer,
-                            serialNumber: portInfo.serialNumber
+                            serialNumber: portInfo.serialNumber,
+                            isDefault
                         })
+                    }
+                    if(!defaultPortSet) {
+                        ports[0].isDefault = true
                     }
                 }
                 resolve(ports)

@@ -12,10 +12,15 @@ function print_port_not_available() {
     + '------------------------------\n')
     process.exit(1)
 }
-function print_ports(ports) {
+function print_ports(defaultPort, otherPorts) {
     const separator = '-------------\n'
     let result = separator
-    for(const port of ports) {
+    result += `DEfAULT PORT\n`
+        + `path:\t\t${defaultPort.path}\n`
+        + `manufacturer:\t${defaultPort.manufacturer}\n`
+        + `serialNumber:\t${defaultPort.serialNumber}\n`
+        + separator
+    for(const port of otherPorts) {
         result += `path:\t\t${port.path}\n`
         + `manufacturer:\t${port.manufacturer}\n`
         + `serialNumber:\t${port.serialNumber}\n`
@@ -49,7 +54,9 @@ export default {
         serial.available_ports()
         .then( ports => {
             if(ports.length) {
-                print_ports(ports)
+                const defaultPort = ports.find(x=>x.isDefault)
+                const otherPorts = ports.filter(x=>!x.isDefault)
+                print_ports(defaultPort, otherPorts)
             }
             else {
                 print_no_ports_available()
@@ -61,8 +68,9 @@ export default {
         serial.available_ports()
         .then(ports => {
             if(!config.port) {
-                if(ports.length) {
-                    config.port = ports[0].path
+                const defaultPort = ports.find(x=>x.isDefault)
+                if(defaultPort) {
+                    config.port = defaultPort.path
                 }
                 else {
                     print_no_ports_available()
