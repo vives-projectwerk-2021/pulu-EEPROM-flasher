@@ -3,7 +3,7 @@
 import { program, Option, Argument } from 'commander'
 import actions from './actions.js'
 
-program.version('1.0.0')
+program.version('1.1.0')
 
 program.command('ports')
     .description('list all available serial ports')

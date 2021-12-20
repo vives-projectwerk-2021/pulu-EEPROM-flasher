@@ -44,18 +44,22 @@ export default {
             em.on('uid', (uid) => {
                 clearTimeout(timer)
                 // write config
-                reader.once('data', (data) => {
+                reader.on('data', (data) => {
                     let result = data.toString()
-                    if(result[0] == '0') {
+                    if(base64.decode_bytes(result) == uid) {
+                        // bypass reading
+                    }
+                    else if(result[0] == '0') {
                         resolve(uid)
                     }
                     else {
                         reject(new Error('pulu-device error'))
                     }
                 })
+                serialPort.write(base64.encode_text('res'))     // send reset command
                 const bytes = config.devEui + config.appEui + config.appKey
                     + config.wait_time.toString(16).padStart(4, '0').toUpperCase()
-                serialPort.write(base64.encode_bytes(bytes))
+                serialPort.write(base64.encode_bytes(bytes))    // send config
             })
             
             reader.once('data', (data) => {
